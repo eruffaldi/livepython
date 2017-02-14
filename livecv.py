@@ -9,6 +9,7 @@ import threading
 import cv2
 import Queue
 import signal
+import numpy as np
 
 
 class Common:
@@ -78,7 +79,8 @@ def signal_handler(signal, frame):
 
 def imshow(x):
   cv2.imshow("live",x)
-if __name__ == "__main__":
+
+def main():
   th = threading.Thread(target = _server_runner, args = [application])
   th.daemon = True
   th.start()
@@ -103,3 +105,7 @@ if __name__ == "__main__":
         common.sendback("Ok " + buffer.getvalue())
       sys.stdout = sys.__stdout__
     cv2.waitKey(1)
+
+if __name__ == "__main__":
+  main()
+
